@@ -4,9 +4,9 @@ author: 'Aakash'
 
 inputs:
   rules_path:
-    description: 'rules'
+    description: '.github/rules'
     required: true
-    default: 'rules'
+    default: '.github/rules'
 
 runs:
   using: 'docker'
