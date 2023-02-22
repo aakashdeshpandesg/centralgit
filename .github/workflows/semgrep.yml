@@ -1,3 +1,6 @@
+# Name of this GitHub Actions workflow.
+name: Semgrep
+
 on:
   # Scan changed files in PRs (diff-aware scanning):
   pull_request: {}
@@ -19,12 +22,6 @@ jobs:
     container:
       # A Docker image with Semgrep installed. Do not change this.
       image: returntocorp/semgrep
-
-      # Define the inputs to this action.
-    inputs:
-      semgrep-rules:
-       description: 'Path to the Semgrep rules file or directory.'
-       required: true
 
     # Skip any PR created by dependabot to avoid permission issues:
     if: (github.actor != 'dependabot[bot]')
