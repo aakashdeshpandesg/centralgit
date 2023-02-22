@@ -29,3 +29,4 @@ runs:
       with:
         name: 'findings'
         path: 'findings.json'
+version: 'v1'
