@@ -1,0 +1,31 @@
+name: 'Semgrep'
+description: 'Runs Semgrep to scan your codebase.'
+author: 'Aakash'
+
+inputs:
+  rules_path:
+    description: 'rules'
+    required: true
+    default: 'rules'
+
+runs:
+  using: 'docker'
+  image: 'returntocorp/semgrep'
+
+  steps:
+    - name: 'Checkout'
+      uses: 'actions/checkout@v2'
+      with:
+        fetch-depth: 0
+
+    - name: 'Semgrep'
+      run: |
+        semgrep ci --json --output=findings.json ${{ inputs.rules_path }}
+      env:
+        SEMGREP_RULES: ${{ inputs.rules_path }}
+
+    - name: 'Upload Findings'
+      uses: 'actions/upload-artifact@v2'
+      with:
+        name: 'findings'
+        path: 'findings.json'
